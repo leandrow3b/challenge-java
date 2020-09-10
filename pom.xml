@@ -121,7 +121,29 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.26.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<verbose>true</verbose>
+					<images>
+						<image>
+							<name>challenge-java</name>
+							<build>
+								<from>openjdk:11.0.3-jre-slim</from>
+								<cmd>
+									<shell>java -jar /maven/${project.artifactId}-${project.version}.jar</shell>
+								</cmd>
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -132,46 +154,6 @@
 					<name>docker</name>
 				</property>
 			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>io.fabric8</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
-						<version>0.26.0</version>
-						<extensions>true</extensions>
-						<configuration>
-							<verbose>true</verbose>
-							<images>
-								<image>
-									<name>challenge-java</name>
-									<build>
-										<from>openjdk:11.0.3-jre-slim</from>
-										<entryPoint>
-											<exec>
-												<args>java</args>
-												<args>-jar</args>
-												<args>/maven/${project.artifactId}-${project.version}.jar</args>
-											</exec>
-										</entryPoint>
-										<assembly>
-											<descriptorRef>artifact</descriptorRef>
-										</assembly>
-									</build>
-								</image>
-							</images>
-						</configuration>
-						<executions>
-							<execution>
-								<id>build</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>build</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 	</profiles>
 
