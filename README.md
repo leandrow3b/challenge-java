@@ -1,9 +1,9 @@
-# Challenge
+# Desafio Técnico
 
-technical Challenge 
-
-The same was implemented using spring boot e h2db
-
-Steps to run the project:
-
-1 - Swagger: http://localhost:8080/swagger-ui.html
+A API foi desenvolvida com Java usando o framework spring boot e o banco de dados h2db
+Foi implementado usando a API do google para autenticação, com isso
+será necessário ter um email da gmail para realizar os testes.
+- Passos para testes
+1 - Swagger: https://challenge-tecnichal.herokuapp.com/swagger-ui.html#/
+2 - A imagem docker encontra-se no docker-hub
+    Para baixar: docker pull leandrow3b/challenge-java:tagname
