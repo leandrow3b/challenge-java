@@ -145,7 +145,7 @@
 								<image>
 									<name>challenge-java</name>
 									<build>
-										<from>java:8-jdk-alpine</from>
+										<from>openjdk:11.0.3-jre-slim</from>
 										<entryPoint>
 											<exec>
 												<args>java</args>
